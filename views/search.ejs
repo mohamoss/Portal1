@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search - Citizen Portal</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .search-form {
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #666;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 4px;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .logout {
+            padding: 8px 15px;
+            background-color: #dc3545;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+        .logout:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Citizen Portal Search</h1>
+            <a href="/logout" class="logout">Logout</a>
+        </div>
+        
+        <form action="/search" method="POST" class="search-form">
+            <div class="form-group">
+                <label for="citizenId">Citizen ID:</label>
+                <input type="text" id="citizenId" name="citizenId" required 
+                       value="<%= typeof citizenId !== 'undefined' ? citizenId : '' %>">
+            </div>
+            <button type="submit">Search</button>
+        </form>
+
+        <% if (typeof policyNumber !== 'undefined' && policyNumber !== null) { %>
+            <div class="result">
+                <h3>Search Results:</h3>
+                <p><strong>Citizen ID:</strong> <%= citizenId %></p>
+                <p><strong>Policy Number:</strong> <%= policyNumber %></p>
+            </div>
+        <% } %>
+    </div>
+</body>
+</html> 
